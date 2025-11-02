@@ -19,17 +19,20 @@ tuple<float, float> find_roots(int a, int b, int delta)
 
     x1 = (-b-sqrt(delta))/(2*a);
     x2 = (-b+sqrt(delta))/(2*a);
+    if (x1==-0)
+        x1 = 0;
+    if (x2==-0)
+        x2 = 0;
     roots = make_tuple(x1, x2);
     return (roots);
 }
 
-int main(void)
+void    second_degree_equation_solver(void)
 {
     int a;
     int b;
     int c;
     int delta;
-
 
     cout << "Welcome to the second degree equation solver ! \n";
     cout << "a = ";
@@ -44,4 +47,17 @@ int main(void)
 
     tuple<float, float>roots = find_roots(a, b, delta);
     cout << "x1 = " << get<0>(roots) << ", \n" << "x2 = " << get<1>(roots) << '\n';
+}
+
+int main(void)
+{
+    int user_ask;
+
+    cout << "What do you want to calculate ? \n [1] Second Degree Equation \n";
+    cin >> user_ask;
+    switch(user_ask)
+    {
+        case 1:
+            second_degree_equation_solver();
+    }
 }
