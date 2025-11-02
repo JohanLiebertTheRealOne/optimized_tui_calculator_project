@@ -1,2 +1,6 @@
+# RESIDUE FILES
 *.out
 .vscode
+
+# TEST FILES
+test_time.cpp

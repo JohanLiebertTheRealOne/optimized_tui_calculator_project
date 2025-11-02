@@ -1,63 +1,36 @@
-#include <iostream>
-#include <cmath>
-#include <tuple>
-
-using namespace std;
-
-int calculate_delta(int a, int b, int c)
-{
-    int delta;
-
-    delta = pow(b,2) -4 *(a*c);
-    return (delta);
-}
-
-tuple<float, float> find_roots(int a, int b, int delta)
-{
-    float x1, x2;
-    tuple<float, float> roots;
-
-    x1 = (-b-sqrt(delta))/(2*a);
-    x2 = (-b+sqrt(delta))/(2*a);
-    if (x1==-0)
-        x1 = 0;
-    if (x2==-0)
-        x2 = 0;
-    roots = make_tuple(x1, x2);
-    return (roots);
-}
-
-void    second_degree_equation_solver(void)
-{
-    int a;
-    int b;
-    int c;
-    int delta;
-
-    cout << "Welcome to the second degree equation solver ! \n";
-    cout << "a = ";
-    cin >> a;
-    cout << "b = ";
-    cin >> b;
-    cout << "c = ";
-    cin >> c;
-
-    delta = calculate_delta(a,b,c);
-    cout << "Delta = " << delta << '\n';
-
-    tuple<float, float>roots = find_roots(a, b, delta);
-    cout << "x1 = " << get<0>(roots) << ", \n" << "x2 = " << get<1>(roots) << '\n';
-}
+#include "quad.hpp"
+#include "time.hpp"
 
 int main(void)
 {
     int user_ask;
+    int USR_TOP;
 
-    cout << "What do you want to calculate ? \n [1] Second Degree Equation \n";
-    cin >> user_ask;
+    std::cout << "What do you want to calculate ? \n [1] Second Degree Equation \n [2] Time \n [3] Sequences \n";
+    std::cin >> user_ask;
     switch(user_ask)
     {
         case 1:
-            second_degree_equation_solver();
+            quad::second_degree_equation_solver();
+            break;
+        case 2:
+            std::cout << "What do you want to calculate ? \n [1] Hours in seconds \n [2] Seconds in hours";
+            std::cin >> USR_TOP;
+            switch(USR_TOP)
+            {
+                case 1:
+                    int hours_in_seconds;
+                    
+                    hours_in_seconds = _time::hours_in_seconds();
+                    std::cout << hours_in_seconds;
+                    break;
+                case 2:
+                    int seconds_in_hours;
+
+                    seconds_in_hours = _time::seconds_in_hours();
+                    std::cout << seconds_in_hours;
+                    break;
+            }
+        /*IMPLEMENTER LES SUITES*/
     }
 }
